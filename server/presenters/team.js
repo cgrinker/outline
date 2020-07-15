@@ -8,6 +8,7 @@ export default function present(team: Team) {
     avatarUrl: team.logoUrl,
     slackConnected: !!team.slackId,
     googleConnected: !!team.googleId,
+    oauthConnected: !!team.oauthID,
     sharing: team.sharing,
     documentEmbeds: team.documentEmbeds,
     guestSignin: team.guestSignin,

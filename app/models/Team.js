@@ -8,6 +8,7 @@ class Team extends BaseModel {
   avatarUrl: string;
   slackConnected: boolean;
   googleConnected: boolean;
+  oauthConnected: boolean;
   sharing: boolean;
   documentEmbeds: boolean;
   guestSignin: boolean;
@@ -16,8 +17,11 @@ class Team extends BaseModel {
 
   @computed
   get signinMethods(): string {
+    if(this.oauthConnected) {
+      return "Oauth Provider";
+    }
     if (this.slackConnected && this.googleConnected) {
-      return "Slack or Google";
+      return "Slack, Google";
     }
     if (this.slackConnected) return "Slack";
     return "Google";

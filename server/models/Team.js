@@ -1,20 +1,20 @@
-// @flow
-import uuid from "uuid";
-import { URL } from "url";
-import fs from "fs";
-import util from "util";
-import path from "path";
-import { DataTypes, sequelize, Op } from "../sequelize";
-import { publicS3Endpoint, uploadToS3FromUrl } from "../utils/s3";
+import { DataTypes, Op, sequelize } from "../sequelize";
 import {
-  stripSubdomain,
   RESERVED_SUBDOMAINS,
+  stripSubdomain,
 } from "../../shared/utils/domains";
-import { ValidationError } from "../errors";
+import { publicS3Endpoint, uploadToS3FromUrl } from "../utils/s3";
 
 import Collection from "./Collection";
 import Document from "./Document";
+import { URL } from "url";
 import User from "./User";
+import { ValidationError } from "../errors";
+import fs from "fs";
+import path from "path";
+import util from "util";
+// @flow
+import uuid from "uuid";
 
 const readFile = util.promisify(fs.readFile);
 
@@ -49,6 +49,7 @@ const Team = sequelize.define(
     },
     slackId: { type: DataTypes.STRING, allowNull: true },
     googleId: { type: DataTypes.STRING, allowNull: true },
+    oauthId: { type: DataTypes.STRING, allowNull: true },
     avatarUrl: { type: DataTypes.STRING, allowNull: true },
     sharing: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true },
     guestSignin: {

@@ -27,6 +27,14 @@ if (process.env.SLACK_KEY) {
   });
 }
 
+if (process.env.OAUTH_NAME) {
+  services.push({
+    id: "oauth",
+    name: process.env.OAUTH_NAME,
+    authUrl: signin("oauth"),
+  });
+}
+
 services.push({
   id: "email",
   name: "Email",

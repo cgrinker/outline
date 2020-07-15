@@ -8,14 +8,17 @@ import addMonths from "date-fns/add_months";
 import { Team } from "../models";
 import { getCookieDomain } from "../../shared/utils/domains";
 
+
 import slack from "./slack";
 import google from "./google";
+import oauth from './oauth';
 import email from "./email";
 
 const app = new Koa();
 const router = new Router();
 
 router.use("/", slack.routes());
+router.use("/", oauth.routes())
 router.use("/", google.routes());
 router.use("/", email.routes());
 
